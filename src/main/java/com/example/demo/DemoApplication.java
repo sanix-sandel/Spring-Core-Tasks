@@ -15,11 +15,11 @@ public class DemoApplication {
 		//SpringApplication.run(DemoApplication.class, args);
 
 		ApplicationContext context=
-				new AnnotationConfigApplicationContext("com.example.demo");
-		SequenceDao sequenceDao =context.getBean(SequenceDao.class);
-
-		System.out.println(sequenceDao.getNextValue("IT"));
-		System.out.println(sequenceDao.getNextValue("IT"));
+				new AnnotationConfigApplicationContext(ShopConfiguration.class);
+		Product aaa=context.getBean("aaa", Product.class);
+		Product cdrw=context.getBean("cdrw", Product.class);
+		System.out.println(aaa);
+		System.out.println(cdrw);
 	}
 
 }
