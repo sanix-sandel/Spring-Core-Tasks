@@ -18,8 +18,23 @@ public class DemoApplication {
 				new AnnotationConfigApplicationContext(ShopConfiguration.class);
 		Product aaa=context.getBean("aaa", Product.class);
 		Product cdrw=context.getBean("cdrw", Product.class);
-		System.out.println(aaa);
-		System.out.println(cdrw);
+		Product dvdrw =context.getBean("dvdrw", Product.class);
+
+		ShoppingCart cart1=context.getBean("shoppingCart", ShoppingCart.class);
+		cart1.addItem(aaa);
+		cart1.addItem(cdrw);
+		System.out.println("Shopping Cart 1 contains "+cart1.getItems());
+
+		ShoppingCart cart2=context.getBean("shoppingCart", ShoppingCart.class);
+		cart2.addItem(dvdrw);
+		System.out.println("Shopping cart 2 contains "+cart2.getItems());
+
+		//the two customer will get the same shopping cart instance
+		//Because Spring's default bean scope is singleton which
+		//means Spring creates exactly one Shopping Cart instance
+		//per IoC container
+		//to get different instances the scope of ShoppingCart bean needs
+		//to be set to prototype
 	}
 
 }
